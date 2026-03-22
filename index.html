@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Bienvenue - Oral DNB</title>
+<style>
+    /* Fond et texte général */
+    body {
+        margin: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background: linear-gradient(135deg, #43e97b, #38f9d7);
+        color: white;
+    }
+
+    /* Animation du texte */
+    h1 {
+        font-size: 32px;
+        animation: apparition 2s ease;
+    }
+
+    @keyframes apparition {
+        from { opacity: 0; transform: translateY(40px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Boutons animés */
+    .btn {
+        padding: 15px 40px;
+        border: none;
+        border-radius: 25px;
+        font-size: 18px;
+        background-color: white;
+        color: #43e97b;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.3s, background-color 0.3s;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .btn:hover {
+        transform: scale(1.1);
+        background-color: #e0e0e0;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    .btn::after {
+        content: "";
+        position: absolute;
+        left: -50%;
+        top: 0;
+        width: 200%;
+        height: 100%;
+        background: rgba(255,255,255,0.2);
+        transform: skewX(-25deg);
+        transition: 0.5s;
+    }
+
+    .btn:hover::after {
+        left: 100%;
+    }
+
+    /* Conteneur des boutons */
+    .buttons {
+        margin-top: 50px;
+    }
+
+    .buttons a {
+        text-decoration: none;
+    }
+
+    .buttons a + a {
+        margin-left: 20px; /* espace entre les boutons */
+    }
+</style>
+</head>
+<body>
+    <h1>Bienvenue à l'oral du DNB de Noah<br>Parcours Avenir</h1>
+
+    <div class="buttons">
+        <a href="connexion.html"><button class="btn">Retour</button></a>
+        <a href="sommaire.html"><button class="btn">Suivant</button></a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,101 @@
+/* style.css */
+
+/* Fond et texte général */
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+/* Animation du texte */
+h1 {
+    color: white;
+    font-size: 32px;
+    animation: apparition 2s ease;
+}
+
+@keyframes apparition {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Boîte de connexion */
+.box {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    width: 300px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    animation: apparitionBox 1.5s ease;
+}
+
+@keyframes apparitionBox {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Inputs */
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    transition: transform 0.2s;
+}
+
+input:focus {
+    transform: scale(1.05);
+    border-color: #4facfe;
+}
+
+/* Boutons animés */
+.btn {
+    padding: 15px 40px;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    background-color: white;
+    color: #43e97b;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.3s, background-color 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform: scale(1.1);
+    background-color: #e0e0e0;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.btn::after {
+    content: "";
+    position: absolute;
+    left: -50%;
+    top: 0;
+    width: 200%;
+    height: 100%;
+    background: rgba(255,255,255,0.2);
+    transform: skewX(-25deg);
+    transition: 0.5s;
+}
+
+.btn:hover::after {
+    left: 100%;
+}
+
+/* Fond spécifique pour connexion et bienvenue */
+body.connexion {
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+}
+
+body.bienvenue {
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+}
