@@ -86,5 +86,12 @@
         <a href="connexion.html"><button class="btn">Retour</button></a>
         <a href="sommaire.html"><button class="btn">Suivant</button></a>
     </div>
+    <script>
+let password = prompt("Entrez le mot de passe :");
+
+if (password !== "Nono") {
+    document.body.innerHTML = "<h1>⛔ Accès refusé</h1>";
+}
+</script>
 </body>
 </html>
