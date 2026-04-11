@@ -2,96 +2,177 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>Bienvenue - Oral DNB</title>
+<title>Connexion - Oral DNB</title>
 <style>
-    /* Fond et texte général */
-    body {
-        margin: 0;
-        height: 100vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        font-family: Arial, sans-serif;
-        text-align: center;
-        background: linear-gradient(135deg, #43e97b, #38f9d7);
-        color: white;
-    }
+body {
+    margin:0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #43e97b, #38f9d7);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+    flex-direction: column;
+    text-align:center;
+}
 
-    /* Animation du texte */
-    h1 {
-        font-size: 32px;
-        animation: apparition 2s ease;
-    }
+#loginForm {
+    display:flex;
+    flex-direction: column;
+    align-items:center;
+    background: rgba(0,0,0,0.3);
+    padding: 30px;
+    border-radius: 15px;
+}
 
-    @keyframes apparition {
-        from { opacity: 0; transform: translateY(40px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
+#loginForm input {
+    padding: 10px;
+    margin: 10px 0;
+    width: 250px;
+    text-align: center;
+    border-radius: 10px;
+    border: none;
+    font-size:16px;
+}
 
-    /* Boutons animés */
-    .btn {
-        padding: 15px 40px;
-        border: none;
-        border-radius: 25px;
-        font-size: 18px;
-        background-color: white;
-        color: #43e97b;
-        cursor: pointer;
-        transition: transform 0.2s, box-shadow 0.3s, background-color 0.3s;
-        position: relative;
-        overflow: hidden;
-    }
+#loginForm button {
+    padding: 10px 25px;
+    border-radius: 10px;
+    border:none;
+    background-color:white;
+    color:#43e97b;
+    cursor:pointer;
+    font-size:16px;
+    margin-top:10px;
+}
 
-    .btn:hover {
-        transform: scale(1.1);
-        background-color: #e0e0e0;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-    }
+#loginForm button:hover {
+    background-color:#e0e0e0;
+    transform: scale(1.05);
+}
 
-    .btn::after {
-        content: "";
-        position: absolute;
-        left: -50%;
-        top: 0;
-        width: 200%;
-        height: 100%;
-        background: rgba(255,255,255,0.2);
-        transform: skewX(-25deg);
-        transition: 0.5s;
-    }
+#message {
+    margin-top:15px;
+    font-weight:bold;
+    color: yellow;
+}
 
-    .btn:hover::after {
-        left: 100%;
-    }
+#welcomeText {
+    display:none;
+    margin-top:20px;
+    font-size:28px;
+    opacity:0;
+    animation: fadeIn 1s ease forwards;
+}
 
-    /* Conteneur des boutons */
-    .buttons {
-        margin-top: 50px;
-    }
+/* Sommaire */
+ul#sommaire {
+    display:none;
+    list-style:none;
+    padding:0;
+    margin-top:30px;
+    font-size:20px;
+    line-height:2;
+}
 
-    .buttons a {
-        text-decoration: none;
-    }
+ul#sommaire li {
+    margin-bottom:10px;
+    opacity:0;
+    transform: translateX(-50px);
+    color: black;       /* texte en noir */
+    font-weight: bold;   /* texte en gras */
+}
 
-    .buttons a + a {
-        margin-left: 20px; /* espace entre les boutons */
-    }
+ul#sommaire li button {
+    margin-left: 10px;
+    padding:5px 15px;
+    border-radius:10px;
+    border:none;
+    background-color:white;
+    color:#43e97b;
+    cursor:pointer;
+    font-weight: bold;
+}
+
+ul#sommaire li button:hover {
+    background-color:#e0e0e0;
+    transform: scale(1.05);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {opacity:0; transform: translateY(20px);}
+    to {opacity:1; transform: translateY(0);}
+}
+
+@keyframes slideFadeIn {
+    from {opacity:0; transform:translateX(-50px);}
+    to {opacity:1; transform:translateX(0);}
+}
 </style>
 </head>
 <body>
-    <h1>Bienvenue à l'oral du DNB de Noah<br>Parcours Avenir</h1>
 
-    <div class="buttons">
-        <a href="connexion.html"><button class="btn">Retour</button></a>
-        <a href="sommaire.html"><button class="btn">Suivant</button></a>
-    </div>
-    <script>
-let password = prompt("Noahdu62 :");
+<div id="loginForm">
+    <input type="text" id="usernameInput" placeholder="Identifiant">
+    <input type="password" id="passwordInput" placeholder="Mot de passe">
+    <button id="submitBtn">Valider</button>
+    <div id="message"></div>
+</div>
 
-if (password !== "Noahdu62") {
-    document.body.innerHTML = "<h1>⛔ Accès refusé</h1>";
+<div id="welcomeText">Bienvenue à l'oral du DNB de Noah<br>Parcours Avenir</div>
+
+<ul id="sommaire">
+    <li>1. Présentation personnelle <button onclick="openSection(1)">Aller</button></li>
+    <li>2. Problématique <button onclick="openSection(2)">Aller</button></li>
+    <li>3. Réponse à la problématique <button onclick="openSection(3)">Aller</button></li>
+    <li>4. Présentation du métier <button onclick="openSection(4)">Aller</button></li>
+    <li>5. Avantages du métier <button onclick="openSection(5)">Aller</button></li>
+    <li>6. Mon projet Parcours Avenir <button onclick="openSection(6)">Aller</button></li>
+    <li>7. Formation scolaire : bac <button onclick="openSection(7)">Aller</button></li>
+    <li>8. Formation scolaire : après le bac <button onclick="openSection(8)">Aller</button></li>
+    <li>9. Conclusion et remerciements <button onclick="openSection(9)">Aller</button></li>
+</ul>
+
+<script>
+let attempts = 3;
+const correctUsername = "Noah.Huchin";
+const correctPassword = "Noahdu62";
+
+const loginForm = document.getElementById("loginForm");
+const message = document.getElementById("message");
+const welcomeText = document.getElementById("welcomeText");
+const sommaire = document.getElementById("sommaire");
+const sommaireItems = sommaire.querySelectorAll("li");
+
+document.getElementById("submitBtn").addEventListener("click", () => {
+    const username = document.getElementById("usernameInput").value;
+    const password = document.getElementById("passwordInput").value;
+
+    if(username === correctUsername && password === correctPassword){
+        loginForm.style.display = "none";
+        welcomeText.style.display = "block";
+        sommaire.style.display = "block";
+        // Animation des items du sommaire section par section
+        sommaireItems.forEach((item, index) => {
+            item.style.animation = `slideFadeIn 0.5s ease forwards ${index*0.2}s`;
+        });
+    } else {
+        attempts--;
+        if(attempts > 0){
+            message.textContent = `Identifiant ou mot de passe incorrect. Il vous reste ${attempts} essai(s).`;
+        } else {
+            loginForm.style.display = "none";
+            document.body.innerHTML = "<h1 style='color:red'>⛔ Accès définitivement refusé</h1>";
+        }
+    }
+});
+
+function openSection(number){
+    window.location.href = `section${number}.html`;
 }
 </script>
+
 </body>
 </html>
