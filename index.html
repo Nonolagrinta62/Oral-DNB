@@ -1,178 +1,241 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<title>Connexion - Oral DNB</title>
-<style>
-body {
-    margin:0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #43e97b, #38f9d7);
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-    flex-direction: column;
-    text-align:center;
-}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Oral DNB - Noah Huchin</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-#loginForm {
-    display:flex;
-    flex-direction: column;
-    align-items:center;
-    background: rgba(0,0,0,0.3);
-    padding: 30px;
-    border-radius: 15px;
-}
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(135deg, #0f172a, #1e3a8a, #06b6d4);
+      color: white;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
 
-#loginForm input {
-    padding: 10px;
-    margin: 10px 0;
-    width: 250px;
-    text-align: center;
-    border-radius: 10px;
-    border: none;
-    font-size:16px;
-}
+    .container {
+      width: 100%;
+      max-width: 900px;
+      text-align: center;
+    }
 
-#loginForm button {
-    padding: 10px 25px;
-    border-radius: 10px;
-    border:none;
-    background-color:white;
-    color:#43e97b;
-    cursor:pointer;
-    font-size:16px;
-    margin-top:10px;
-}
+    .card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 25px;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 1s ease;
+    }
 
-#loginForm button:hover {
-    background-color:#e0e0e0;
-    transform: scale(1.05);
-}
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
 
-#message {
-    margin-top:15px;
-    font-weight:bold;
-    color: yellow;
-}
+    .subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      opacity: 0.9;
+    }
 
-#welcomeText {
-    display:none;
-    margin-top:20px;
-    font-size:28px;
-    opacity:0;
-    animation: fadeIn 1s ease forwards;
-}
+    #loginForm {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: center;
+    }
 
-/* Sommaire */
-ul#sommaire {
-    display:none;
-    list-style:none;
-    padding:0;
-    margin-top:30px;
-    font-size:20px;
-    line-height:2;
-}
+    input {
+      width: 100%;
+      max-width: 350px;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      outline: none;
+    }
 
-ul#sommaire li {
-    margin-bottom:10px;
-    opacity:0;
-    transform: translateX(-50px);
-    color: black;       /* texte en noir */
-    font-weight: bold;   /* texte en gras */
-}
+    button {
+      padding: 14px 30px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #22c55e, #14b8a6);
+      color: white;
+      font-size: 1rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
 
-ul#sommaire li button {
-    margin-left: 10px;
-    padding:5px 15px;
-    border-radius:10px;
-    border:none;
-    background-color:white;
-    color:#43e97b;
-    cursor:pointer;
-    font-weight: bold;
-}
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+    }
 
-ul#sommaire li button:hover {
-    background-color:#e0e0e0;
-    transform: scale(1.05);
-}
+    #message {
+      margin-top: 10px;
+      color: #fde047;
+      font-weight: bold;
+    }
 
-/* Animations */
-@keyframes fadeIn {
-    from {opacity:0; transform: translateY(20px);}
-    to {opacity:1; transform: translateY(0);}
-}
+    #welcomeSection {
+      display: none;
+    }
 
-@keyframes slideFadeIn {
-    from {opacity:0; transform:translateX(-50px);}
-    to {opacity:1; transform:translateX(0);}
-}
-</style>
+    #welcomeText {
+      font-size: 2rem;
+      margin-bottom: 30px;
+      animation: fadeInUp 1s ease;
+    }
+
+    #sommaire {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    #sommaire li {
+      background: rgba(255, 255, 255, 0.15);
+      padding: 18px;
+      border-radius: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      animation: slideIn 0.6s ease forwards;
+      opacity: 0;
+    }
+
+    #sommaire li span {
+      text-align: left;
+      font-weight: 600;
+    }
+
+    .section-btn {
+      background: white;
+      color: #0f172a;
+      padding: 10px 18px;
+      font-size: 0.9rem;
+    }
+
+    .section-btn:hover {
+      background: #e2e8f0;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
+  <div class="container">
+    <div class="card">
+      <div id="loginSection">
+        <h1>🎓 Oral du DNB</h1>
+        <p class="subtitle">Parcours Avenir - Développeur Informatique</p>
 
-<div id="loginForm">
-    <input type="text" id="usernameInput" placeholder="Identifiant">
-    <input type="password" id="passwordInput" placeholder="Mot de passe">
-    <button id="submitBtn">Valider</button>
-    <div id="message"></div>
-</div>
+        <div id="loginForm">
+          <input type="text" id="usernameInput" placeholder="Identifiant" />
+          <input type="password" id="passwordInput" placeholder="Mot de passe" />
+          <button id="submitBtn">Se connecter</button>
+          <div id="message"></div>
+        </div>
+      </div>
 
-<div id="welcomeText">Bienvenue à l'oral du DNB de Noah<br>Parcours Avenir sur le métier de développeur informatique</div>
+      <div id="welcomeSection">
+        <div id="welcomeText">
+          Bienvenue à l'oral du DNB de Noah Huchin<br />
+          <span style="font-size: 1.2rem; opacity: 0.9;">Métier de développeur informatique</span>
+        </div>
 
-<ul id="sommaire">
-    <li>1. Présentation personnelle <button onclick="openSection(1)">Aller</button></li>
-    <li>2. Problématique <button onclick="openSection(2)">Aller</button></li>
-    <li>3. Réponse à la problématique <button onclick="openSection(3)">Aller</button></li>
-    <li>4. Présentation du métier <button onclick="openSection(4)">Aller</button></li>
-    <li>5. Avantages du métier <button onclick="openSection(5)">Aller</button></li>
-    <li>6. Mon projet Parcours Avenir <button onclick="openSection(6)">Aller</button></li>
-    <li>7. Formation scolaire : bac <button onclick="openSection(7)">Aller</button></li>
-    <li>8. Formation scolaire : après le bac <button onclick="openSection(8)">Aller</button></li>
-    <li>9. Conclusion et remerciements <button onclick="openSection(9)">Aller</button></li>
-</ul>
+        <ul id="sommaire">
+          <li><span>1. Présentation personnelle</span><button class="section-btn" onclick="openSection(1)">Voir</button></li>
+          <li><span>2. Problématique</span><button class="section-btn" onclick="openSection(2)">Voir</button></li>
+          <li><span>3. Réponse à la problématique</span><button class="section-btn" onclick="openSection(3)">Voir</button></li>
+          <li><span>4. Présentation du métier</span><button class="section-btn" onclick="openSection(4)">Voir</button></li>
+          <li><span>5. Avantages du métier</span><button class="section-btn" onclick="openSection(5)">Voir</button></li>
+          <li><span>6. Mon projet Parcours Avenir</span><button class="section-btn" onclick="openSection(6)">Voir</button></li>
+          <li><span>7. Formation : le bac</span><button class="section-btn" onclick="openSection(7)">Voir</button></li>
+          <li><span>8. Formation après le bac</span><button class="section-btn" onclick="openSection(8)">Voir</button></li>
+          <li><span>9. Conclusion et remerciements</span><button class="section-btn" onclick="openSection(9)">Voir</button></li>
+        </ul>
+      </div>
+    </div>
+  </div>
 
-<script>
-let attempts = 3;
-const correctUsername = "Noah.Huchin";
-const correctPassword = "Noahdu62";
+  <script>
+    let attempts = 3;
+    const correctUsername = "Noah.Huchin";
+    const correctPassword = "Noahdu62";
 
-const loginForm = document.getElementById("loginForm");
-const message = document.getElementById("message");
-const welcomeText = document.getElementById("welcomeText");
-const sommaire = document.getElementById("sommaire");
-const sommaireItems = sommaire.querySelectorAll("li");
+    const loginSection = document.getElementById("loginSection");
+    const welcomeSection = document.getElementById("welcomeSection");
+    const message = document.getElementById("message");
 
-document.getElementById("submitBtn").addEventListener("click", () => {
-    const username = document.getElementById("usernameInput").value;
-    const password = document.getElementById("passwordInput").value;
+    document.getElementById("submitBtn").addEventListener("click", () => {
+      const username = document.getElementById("usernameInput").value;
+      const password = document.getElementById("passwordInput").value;
 
-    if(username === correctUsername && password === correctPassword){
-        loginForm.style.display = "none";
-        welcomeText.style.display = "block";
-        sommaire.style.display = "block";
-        // Animation des items du sommaire section par section
-        sommaireItems.forEach((item, index) => {
-            item.style.animation = `slideFadeIn 0.5s ease forwards ${index*0.2}s`;
+      if (username === correctUsername && password === correctPassword) {
+        loginSection.style.display = "none";
+        welcomeSection.style.display = "block";
+
+        const items = document.querySelectorAll("#sommaire li");
+        items.forEach((item, index) => {
+          item.style.animationDelay = `${index * 0.1}s`;
         });
-    } else {
+      } else {
         attempts--;
-        if(attempts > 0){
-            message.textContent = `Identifiant ou mot de passe incorrect. Il vous reste ${attempts} essai(s).`;
+        if (attempts > 0) {
+          message.textContent = `Identifiant ou mot de passe incorrect. Il reste ${attempts} essai(s).`;
         } else {
-            loginForm.style.display = "none";
-            document.body.innerHTML = "<h1 style='color:red'>⛔ Accès définitivement refusé</h1>";
+          document.body.innerHTML = `
+            <div style="text-align:center; color:white; font-family:Arial;">
+              <h1>⛔ Accès refusé</h1>
+              <p>Nombre maximum de tentatives atteint.</p>
+            </div>`;
         }
+      }
+    });
+
+    function openSection(number) {
+      window.location.href = `section${number}.html`;
     }
-});
-
-function openSection(number){
-    window.location.href = `section${number}.html`;
-}
-</script>
-
+  </script>
 </body>
 </html>
