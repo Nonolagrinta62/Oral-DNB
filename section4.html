@@ -9,10 +9,23 @@ body{
     height:100vh;
     font-family:Arial,sans-serif;
     color:white;
-    background: linear-gradient(135deg, #0f172a, #1e3a8a, #06b6d4);
+
+    background: linear-gradient(-45deg,#0f172a,#1e3a8a,#06b6d4,#22c55e);
     background-size:400% 400%;
+    animation: gradient 12s ease infinite;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    flex-direction:column;
 }
 
+@keyframes gradient{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
 </style>
 </head>
 <body>
