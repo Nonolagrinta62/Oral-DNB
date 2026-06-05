@@ -14,7 +14,7 @@ body {
 /* Animation du texte */
 h1 {
     color: white;
-    font-size: 32px;
+    font-size: 40px;
     animation: apparition 2s ease;
 }
 
